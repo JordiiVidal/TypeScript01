@@ -1,3 +1,5 @@
+var numbers = [0,];
+var words = ["",];
 window.onload = function () {
     //01
     var date = new Date();
@@ -24,26 +26,38 @@ function checkInput() {
     var numResult = divResultnum.textContent;
     var miInput = document.getElementById("inputExc2");
     var txtInput = miInput.value;
+    var lastNumber = numbers.length - 1;
+    var lastText = words.length - 1;
+    var wordfinal = words[lastText];
+    var numberfinal = numbers[lastNumber];
     var input = parseInt(txtInput);
     if (isNaN(input)) {
         if (txtInput == '') {
             alert('Campo Vacio');
         }
         else { //cuando es texto
-            if (textResult.length > txtInput.length) {
-                divResult.innerHTML = "" + textResult;
+            if (wordfinal.length > txtInput.length) {
+                divResult.innerHTML = "La ultima palabra introducida " + wordfinal + " es mas grande que la actual " + txtInput;
+                words.push(txtInput);
+            }
+            else if (wordfinal.length < txtInput.length) {
+                divResult.innerHTML = "La palabra actual " + txtInput + " es mas grande que la anterior " + wordfinal;
+                words.push(txtInput);
             }
             else {
-                divResult.innerHTML = "" + txtInput;
+                divResult.innerHTML = "La palabra actual " + txtInput + " es igual a la anterior " + wordfinal;
+                words.push(txtInput);
             }
         }
     }
     else { //cuando es numero
-        if (parseInt(numResult) > input) {
-            divResultnum.innerHTML = "" + numResult;
+        if (numberfinal > input) {
+            divResult.innerHTML = "El ultimo numero introducida " + numberfinal + " es mas grande que la actual " + input;
+            numbers.push(input);
         }
-        else {
-            divResultnum.innerHTML = "" + input;
+        else if (numberfinal < input) {
+            divResult.innerHTML = "El numero actual " + input + " es mas grande que la anterior " + numberfinal;
+            numbers.push(input);
         }
     }
 }

@@ -1,3 +1,6 @@
+var numbers = [0,];
+var words = ["",];
+
 window.onload = function (){
 
    //01
@@ -33,27 +36,39 @@ function checkInput(){
     let miInput: HTMLInputElement = <HTMLInputElement>document.getElementById("inputExc2");
     let txtInput:string= miInput.value;
 
+    var lastNumber = numbers.length-1;
+    var lastText = words.length-1;
+
+    var wordfinal = words[lastText];
+    var numberfinal = numbers[lastNumber];
+
     let input: number = parseInt(txtInput);
     if (isNaN(input)) {
-        
-        if(txtInput == ''){
+        if(txtInput == ''){ 
             alert('Campo Vacio');
         }else{//cuando es texto
-           if(textResult.length > txtInput.length){
-                divResult.innerHTML = ""+textResult;
-                
+           if(wordfinal.length > txtInput.length){
+                divResult.innerHTML = "La ultima palabra introducida "+wordfinal+ " es mas grande que la actual "+txtInput;
+                words.push(txtInput);
+           }else if(wordfinal.length < txtInput.length){
+                divResult.innerHTML = "La palabra actual "+txtInput+ " es mas grande que la anterior "+wordfinal;
+                words.push(txtInput);   
            }else{
-                divResult.innerHTML = ""+txtInput;
+                divResult.innerHTML = "La palabra actual "+txtInput+ " es igual a la anterior "+wordfinal;
+                words.push(txtInput);
            }
         }
     }else{//cuando es numero
-        if(parseInt(numResult) > input){
-            divResultnum.innerHTML = ""+numResult;
-       }else{
-            divResultnum.innerHTML = ""+input;
+        if(numberfinal > input){
+            divResult.innerHTML = "El ultimo numero introducida "+numberfinal+ " es mas grande que la actual "+input;
+            numbers.push(input);
+       }else if(numberfinal < input){
+            divResult.innerHTML = "El numero actual "+input+ " es mas grande que la anterior "+numberfinal;
+            numbers.push(input);
        }
     }
-}function openCompra(){
+}
+function openCompra(){
     var width = window.screen.width/2;
     var height= window.screen.height/2;
     var Top= height-300;
