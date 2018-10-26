@@ -14,15 +14,16 @@ window.onload = function (){
     console.log("numero generado:"+numero);
 
     var checkbtn = document.getElementById("comprar");
-    checkbtn.addEventListener("click",checkInput,false);
+    checkbtn.addEventListener("click",checkInput2,false);
 }
-function checkInput(){
+function checkInput2(){
         let valor: HTMLInputElement = <HTMLInputElement>document.getElementById("numero");
         let valortxt:string= valor.value;
         var numeroInput = parseInt(valortxt);
          if(numeroInput===numero){
-            window.document.getElementById("mensaje").innerHTML=numeroInput+" = "+numero;
-            window.opener.document.getElementById("mensaje").innerHTML=numeroInput+" = "+numero;
+            window.document.getElementById("mensaje").innerHTML="Mis bendiciones numero acertado!!";
+            window.opener.document.getElementById("mensaje").innerHTML="Mis bendiciones numero acertado!!";
+            window.opener.close();
         }else{
             if(numeroInput>numero){
                 window.document.getElementById("mensaje").innerHTML="numero inferior";

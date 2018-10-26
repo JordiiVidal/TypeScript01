@@ -1,5 +1,6 @@
 var numbers = [0,];
 var words = ["",];
+var show = false;
 
 window.onload = function (){
 
@@ -20,18 +21,33 @@ window.onload = function (){
     var checkbtn = document.getElementById("check");
     checkbtn.addEventListener("click",checkInput,false);
 
+    var showbtn = document.getElementById("show");
+    showbtn.addEventListener("click",showList,false);
+
     //03
     var comprabtn = document.getElementById("comprar");
     comprabtn.addEventListener("click",openCompra,false);
 
+}
+function showList(){
+    var lista = document.getElementById('listaNUMBERS');
+    var listatxt = document.getElementById('listaWORDS');
+    if(!show){
+        lista.innerHTML = numbers.toString();
+        listatxt.innerHTML = words.toString();
+        show = true;
+    }else{
+        show = false;
+        lista.innerHTML = "";
+        listatxt.innerHTML = "";
+    }
+    
 }
 function checkInput(){
 
     let divResult = document.getElementById("resulttxt");
     let textResult  = divResult.textContent;
 
-    let divResultnum = document.getElementById("resultnum");
-    let numResult  = divResultnum.textContent;
 
     let miInput: HTMLInputElement = <HTMLInputElement>document.getElementById("inputExc2");
     let txtInput:string= miInput.value;
@@ -69,14 +85,15 @@ function checkInput(){
     }
 }
 function openCompra(){
+
     var width = window.screen.width/2;
     var height= window.screen.height/2;
     var Top= height-300;
     var Left= width-300;
     ventanaComprar = window.open("compra.html","","width=300,height=300,menubar=no,left="+Left+",top="+Top);
-    //ventanaAciertaNumero = window.open("numero.html","","width=300,height=300;menubar=no;left=0");
     window.setTimeout(function(){
         ventanaComprar.close();
-    },7000)
+    },7000);
+
 }
 var ventanaComprar;

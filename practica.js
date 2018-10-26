@@ -1,5 +1,6 @@
 var numbers = [0,];
 var words = ["",];
+var show = false;
 window.onload = function () {
     //01
     var date = new Date();
@@ -15,15 +16,29 @@ window.onload = function () {
     //02
     var checkbtn = document.getElementById("check");
     checkbtn.addEventListener("click", checkInput, false);
+    var showbtn = document.getElementById("show");
+    showbtn.addEventListener("click", showList, false);
     //03
     var comprabtn = document.getElementById("comprar");
     comprabtn.addEventListener("click", openCompra, false);
 };
+function showList() {
+    var lista = document.getElementById('listaNUMBERS');
+    var listatxt = document.getElementById('listaWORDS');
+    if (!show) {
+        lista.innerHTML = numbers.toString();
+        listatxt.innerHTML = words.toString();
+        show = true;
+    }
+    else {
+        show = false;
+        lista.innerHTML = "";
+        listatxt.innerHTML = "";
+    }
+}
 function checkInput() {
     var divResult = document.getElementById("resulttxt");
     var textResult = divResult.textContent;
-    var divResultnum = document.getElementById("resultnum");
-    var numResult = divResultnum.textContent;
     var miInput = document.getElementById("inputExc2");
     var txtInput = miInput.value;
     var lastNumber = numbers.length - 1;
@@ -67,7 +82,6 @@ function openCompra() {
     var Top = height - 300;
     var Left = width - 300;
     ventanaComprar = window.open("compra.html", "", "width=300,height=300,menubar=no,left=" + Left + ",top=" + Top);
-    //ventanaAciertaNumero = window.open("numero.html","","width=300,height=300;menubar=no;left=0");
     window.setTimeout(function () {
         ventanaComprar.close();
     }, 7000);

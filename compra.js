@@ -10,15 +10,16 @@ window.onload = function () {
     numero = Math.floor((Math.random() * 10));
     console.log("numero generado:" + numero);
     var checkbtn = document.getElementById("comprar");
-    checkbtn.addEventListener("click", checkInput, false);
+    checkbtn.addEventListener("click", checkInput2, false);
 };
-function checkInput() {
+function checkInput2() {
     var valor = document.getElementById("numero");
     var valortxt = valor.value;
     var numeroInput = parseInt(valortxt);
     if (numeroInput === numero) {
-        window.document.getElementById("mensaje").innerHTML = numeroInput + " = " + numero;
-        window.opener.document.getElementById("mensaje").innerHTML = numeroInput + " = " + numero;
+        window.document.getElementById("mensaje").innerHTML = "Mis bendiciones numero acertado!!";
+        window.opener.document.getElementById("mensaje").innerHTML = "Mis bendiciones numero acertado!!";
+        window.opener.close();
     }
     else {
         if (numeroInput > numero) {
